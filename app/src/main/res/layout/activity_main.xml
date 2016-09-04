@@ -4,14 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.zhangchao_a.myxpuzzle.MainActivity">
+>
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_puzzle_main_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="选择难度"
+            android:textColor="@color/main_text"
+            android:textSize="24sp"
+            />
+        <TextView
+            android:id="@+id/tv_pullzle_main_type_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/textview_click"
+            android:text="2X2"
+            android:textColor="@color/main_text"
+            android:textSize="24sp"
+            />
+    </LinearLayout>
+    <GridView
+        android:id="@+id/gv_xpuzzle_main_pic_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_puzzle_main_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8sp"
+        android:gravity="center_horizontal"
+        android:numColumns="4"
+        android:padding="8sp"
+        android:verticalSpacing="8sp"></GridView>
 </RelativeLayout>
