@@ -47,8 +47,22 @@ public class GameUtil {
              getPuzzleGenerator();
      }
 
-    private static boolean canSolve(List<Integer> data) {
-        int blankId=GameUtil.mBlankItemBean.getmBitmapId();
+    public static boolean isSuccess()
+    {
+        for (ItemBean tempBean:GameUtil.mItemBeans){
+            if(tempBean.getmBitmapId()!=0&&(tempBean.getmItemId())==tempBean.getmBitmapId())
+            {
+                continue;
+            }else if(tempBean.getmBitmapId()==0&&tempBean.getmItemId()==PuzzleMain.TYPE*PuzzleMain.TYPE)
+            {
+                continue;
+            }else
+                return false;
+        }
+        return true;
+    }
+    public static boolean canSolve(List<Integer> data) {
+        int blankId=GameUtil.mBlankItemBean.getmItemId();
         if (data.size()%2==1)
             return getInversions(data)%2==0;
         else
@@ -60,7 +74,7 @@ public class GameUtil {
 
     }
 
-    private static int getInversions(List<Integer> data) {
+    public static int getInversions(List<Integer> data) {
         int inversions=0;
         int inversionCount=0;
         for (int i=0;i<data.size();i++)
@@ -79,7 +93,7 @@ public class GameUtil {
         return inversions;
     }
 
-    private static void swapItems(ItemBean from, ItemBean blank) {
+    public static void swapItems(ItemBean from, ItemBean blank) {
         ItemBean tempItemBean=new ItemBean();
         tempItemBean.setmBitmapId(from.getmBitmapId());
         from.setmBitmapId(blank.getmBitmapId());

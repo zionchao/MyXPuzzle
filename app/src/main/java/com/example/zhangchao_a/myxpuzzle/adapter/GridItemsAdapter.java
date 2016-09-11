@@ -52,7 +52,11 @@ public class GridItemsAdapter extends BaseAdapter{
         if (convertView==null)
         {
             iv_pic_item=new ImageView(mContext);
-            iv_pic_item.setLayoutParams(new GridView.LayoutParams(80*density,100*density));
+//            iv_pic_item.setLayoutParams(new GridView.LayoutParams(
+//                    80*density,100*density));
+            iv_pic_item.setLayoutParams(new GridView.LayoutParams(
+                    mBitmapItemLists.get(position).getWidth(),
+                    mBitmapItemLists.get(position).getHeight()));
             iv_pic_item.setScaleType(ImageView.ScaleType.FIT_XY);
         }else
         {

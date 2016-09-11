@@ -23,7 +23,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.zhangchao_a.myxpuzzle.R;
-import com.example.zhangchao_a.myxpuzzle.adapter.GridItemsAdapter;
+import com.example.zhangchao_a.myxpuzzle.adapter.GridPicListAdapter;
 import com.example.zhangchao_a.myxpuzzle.util.ScreenUtil;
 
 import java.io.File;
@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     // 返回码：相机
     private static final int RESULT_CAMERA = 200;
     private static final String IMAGE_TYPE="image/*";
-    private static String TEMP_IMAGE_PATH;
+    public static String TEMP_IMAGE_PATH;
 
     private TextView mTvPuzzleMainTypeSelected;
     private LayoutInflater mLayoutInflater;
@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 "/temp.png";
         mPicList=new ArrayList<Bitmap>();
         initViews();
-        mGvPicList.setAdapter(new GridItemsAdapter(MainActivity.this,mPicList));
+        mGvPicList.setAdapter(new GridPicListAdapter(MainActivity.this,mPicList));
         mGvPicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -124,7 +124,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 cursor.moveToFirst();
                 String imagePath=cursor.getString(cursor.getColumnIndex("_data"));
                 Intent intent=new Intent(MainActivity.this,PuzzleMain.class);
-                intent.putExtra("picPath",imagePath);
+                intent.putExtra("mPicPath",imagePath);
                 intent.putExtra("mType",mType);
                 cursor.close();
                 startActivity(intent);
@@ -178,8 +178,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         Drawable transpent=new ColorDrawable(Color.TRANSPARENT);
         mPopupWindow.setBackgroundDrawable(transpent);
         int[]location=new int[2];
-        mPopupView.getLocationOnScreen(location);
-        mPopupWindow.showAtLocation(view, Gravity.NO_GRAVITY,location[0]-40*density,location[1]+30*density);
+        view.getLocationOnScreen(location);
+        mPopupWindow.showAtLocation(
+                view, Gravity.NO_GRAVITY,
+                location[0]-40*density,
+                location[1]+30*density);
     }
 
     @Override
